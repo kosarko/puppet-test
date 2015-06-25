@@ -7,3 +7,6 @@ my::packages_no_conf:
   - mc
   - screen
   - sshfs
+  - tree
+  - htop
+  - iftop

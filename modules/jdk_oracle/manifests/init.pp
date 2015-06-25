@@ -50,8 +50,8 @@ class jdk_oracle(
   $ensure         = 'installed'
   ) {
 
-  $default_8_update = '11'
-  $default_8_build  = '12'
+  $default_8_update = '45'
+  $default_8_build  = '14'
   $default_7_update = '67'
   $default_7_build  = '01'
   $default_6_update = '45'
