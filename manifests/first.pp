@@ -8,7 +8,7 @@ package { $no_conf_packages:
     ensure => latest,
 }
 
-$my_dirs = [ "/opt/installations", "/opt/sources" ]
+$my_dirs = [ "/opt/installations", "/opt/sources", "/opt/sources/dspace", "/opt/installations/dspace" ]
 file { $my_dirs:
     ensure => directory,
 }
@@ -23,4 +23,11 @@ file { '/sources':
     ensure => link,
     target => '/opt/sources',
     require => File['/opt/sources'],
+}
+
+class { 'jdk_oracle':
+    ensure => installed,
+    version => '8',
+    install_dir => '/installations/java',
+    require => File['/installations'],
 }
