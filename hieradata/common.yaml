@@ -10,3 +10,6 @@ my::packages_no_conf:
   - tree
   - htop
   - iftop
+  - libxml2
+  - libxml2-dev
+  - libxml2-utils
