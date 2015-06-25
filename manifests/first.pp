@@ -2,7 +2,8 @@ exec { 'apt-update':
     command => '/usr/bin/apt-get update'
 }
 
-package { 'git':
+$no_conf_packages = hiera_array("my::packages_no_conf")
+package { $no_conf_packages:
     require => Exec['apt-update'],
     ensure => latest,
 }

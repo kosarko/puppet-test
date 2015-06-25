@@ -1,0 +1,9 @@
+---
+my::packages_no_conf:
+  - git
+  - subversion
+  - ant
+  - maven
+  - mc
+  - screen
+  - sshfs
