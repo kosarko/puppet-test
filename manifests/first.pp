@@ -51,3 +51,5 @@ exec { 'update-java-alternatives':
     require => Exec["generate-jinfo"],
     user => 'root',
 }
+
+#### Tomcat 8
