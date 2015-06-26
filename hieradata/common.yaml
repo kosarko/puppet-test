@@ -14,3 +14,4 @@ my::packages_no_conf:
   - libxml2-dev
   - libxml2-utils
   - links
+  - dsniff	#tcpkill

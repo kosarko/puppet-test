@@ -97,13 +97,18 @@ class tomcat8(
         require => File["${install_dir}/tomcat8"],
     }
     exec { 'scp_config':
-        command => "scp -r -i ${keypath} -o StrictHostKeyChecking=no ${from}:/opt/tomcat8/conf/\\{server.xml, tomcat-users.xml\\} ${install_dir}/tomcat8/conf/",
+        command => "scp -r -i ${keypath} -o StrictHostKeyChecking=no ${from}:/opt/tomcat8/conf/server.xml ${install_dir}/tomcat8/conf/ && scp -r -i ${keypath} -o StrictHostKeyChecking=no ${from}:/opt/tomcat8/conf/tomcat-users.xml ${install_dir}/tomcat8/conf/",
         unless => "grep \"admin\" ${install_dir}/tomcat8/conf/tomcat_users.xml",
         require => File["${install_dir}/tomcat8"],
     }
     file { ["${install_dir}/tomcat8/conf/server.xml","${install_dir}/tomcat8/conf/tomcat-users.xml"]:
         owner => 'tomcat',
         require => Exec['scp_config'],
+    }
+    exec {"clean_server.xml":
+        require => File["${install_dir}/tomcat8/conf/server.xml"],
+        command => "sed -i '128,168 d' ${install_dir}/tomcat8/conf/server.xml", ###XXX hardcoded line numbers
+        onlyif => "grep \"Context path\" ${install_dir}/tomcat8/conf/server.xml"
     }
     file { "${install_dir}/tomcat8/conf/policy.d":
         require => Exec['scp_policy.d'],
