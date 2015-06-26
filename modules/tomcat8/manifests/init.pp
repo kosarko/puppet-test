@@ -98,7 +98,7 @@ class tomcat8(
     }
     exec { 'scp_config':
         command => "scp -r -i ${keypath} -o StrictHostKeyChecking=no ${from}:/opt/tomcat8/conf/server.xml ${install_dir}/tomcat8/conf/ && scp -r -i ${keypath} -o StrictHostKeyChecking=no ${from}:/opt/tomcat8/conf/tomcat-users.xml ${install_dir}/tomcat8/conf/",
-        unless => "grep \"admin\" ${install_dir}/tomcat8/conf/tomcat_users.xml",
+        unless => "grep \"admin\" ${install_dir}/tomcat8/conf/tomcat-users.xml",
         require => File["${install_dir}/tomcat8"],
     }
     file { ["${install_dir}/tomcat8/conf/server.xml","${install_dir}/tomcat8/conf/tomcat-users.xml"]:
