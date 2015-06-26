@@ -53,3 +53,10 @@ exec { 'update-java-alternatives':
 }
 
 #### Tomcat 8
+class { "tomcat8":
+	install_dir => '/opt/installations',
+	require => Exec['update-java-alternatives'],
+}
+
+class { "probe": }
+
